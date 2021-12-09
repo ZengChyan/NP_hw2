@@ -8,7 +8,7 @@
 #include <pthread.h>
 #include <ctype.h>
 
-#define PORT 5555
+#define PORT 5556
 
 int socket_fd;
 
@@ -93,6 +93,9 @@ for(int i = 1; i <= 9; i++){
 	while(fgets(decision, 10, stdin)){
 		if(!game_start){
 			printf("遊戲結束！\n");
+			for(int i = 1; i <= 9; i++){
+				ox[i] = ' ';
+			}
 			break;
 		}
 		if(!turned_me){
@@ -430,8 +433,7 @@ void begin(){
 void logout(){
 	// 需要給 server 處理 fds 
 	send(socket_fd, "logout", strlen("logout"), 0);
-	init();
-	begin();
+	exit(0);
 }
 int main(){
 	init();
