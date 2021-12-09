@@ -9,7 +9,7 @@
 #include <signal.h>
 
 #define online_size 100
-#define PORT 5555
+#define PORT 5556
 
 int online_client = 0;
 int socket_fd;
@@ -231,6 +231,7 @@ void *thread_job(void *client_fd_tmp){
 		if(strcmp(buf, "logout") == 0){
 			for(int i = 0; i < online_size; i++){
 				if(socket_fds[i] == client_fd){
+					printf("in\n");
 					socket_fds[i] = 0;
 					break;
 				}
